@@ -1,0 +1,57 @@
+/* Centrer le contenu des sections */
+.about-section, .team-section {
+    text-align: center;
+    margin-bottom: 40px; /* Augmente l'espacement entre les sections */
+}
+
+/* Centrer et styliser les images */
+.about-image, .team-image {
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px; /* Ajoute de l'espace sous l'image */
+}
+
+/* Style pour les titres */
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Texte justifié avec espacement entre les lignes */
+p {
+    line-height: 1.8;
+    text-align: justify;
+    margin: 0 auto;
+    max-width: 800px; /* Limite la largeur du texte pour une meilleure lisibilité */
+}
+
+/* Liste des services */
+ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Bouton de prise de rendez-vous */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #0056b3; /* Couleur au survol */
+}
