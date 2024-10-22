@@ -8,7 +8,7 @@ use App\Controllers\RendezVousController;
 use App\Controllers\ServiceController;
 use App\Controllers\AboutController;
 use App\Controllers\NewsController;
-
+use App\Controllers\InscriptionController;
 $uri = $_SERVER['REQUEST_URI'] ?? '/';
 $uriSegments = explode('/', trim(parse_url($uri, PHP_URL_PATH), '/'));
 
@@ -47,6 +47,12 @@ switch ($uriSegments[0]) {
         $controller = new NewsController(); // Gère la page statique
         $controller->index(); // Affiche la page d'actualités
         break;
+
+    case 'inscription':
+        $controller = new InscriptionController();
+        $controller->index();
+        break;
+
 
     default:
         header("HTTP/1.0 404 Not Found");

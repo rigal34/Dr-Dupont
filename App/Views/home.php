@@ -45,7 +45,7 @@
 </p>
 
 
-<a href="/rendezvous" class="button">Prendre un rendez-vous</a>
+<a href="/inscription" class="button">Prendre un rendez-vous</a>
 
 
 

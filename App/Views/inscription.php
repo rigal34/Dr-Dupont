@@ -1,18 +1,14 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription Patient</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <title>Inscription</title>
 </head>
 <body>
-<h1>Formulaire d'inscription d'un patient</h1>
+<h1>Inscription</h1>
 
-<form action="/patient/store" method="POST">
+<form method="POST" action="/inscription/store">
     <label for="nom">Nom :</label>
     <input type="text" id="nom" name="nom" required><br><br>
 
@@ -28,7 +24,13 @@
     <label for="date_naissance">Date de naissance :</label>
     <input type="date" id="date_naissance" name="date_naissance" required><br><br>
 
-    <button type="submit">Ajouter le patient</button>
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <button type="submit">S'inscrire</button>
 </form>
+
 </body>
 </html>
+
+

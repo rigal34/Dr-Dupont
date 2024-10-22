@@ -1,5 +1,5 @@
 <?php
-// Fichier: config.php
+
 
 try {
     $dsn = 'mysql:host=localhost;dbname=gestion_rendez_vous';

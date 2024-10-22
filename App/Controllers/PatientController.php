@@ -29,15 +29,17 @@ class PatientController {
             $telephone = $_POST['telephone'];
             $email = $_POST['email'];
             $date_naissance = $_POST['date_naissance'];
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hachage du mot de passe
 
             // Insertion dans la base de données
-            $stmt = $this->db->prepare("INSERT INTO patients (nom, prenom, email, telephone, date_naissance) 
-                                        VALUES (:nom, :prenom, :email, :telephone, :date_naissance)");
+            $stmt = $this->db->prepare("INSERT INTO patients (nom, prenom, email, telephone, date_naissance, password) 
+                                    VALUES (:nom, :prenom, :email, :telephone, :date_naissance, :password)");
             $stmt->bindParam(':nom', $nom);
             $stmt->bindParam(':prenom', $prenom);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':telephone', $telephone);
             $stmt->bindParam(':date_naissance', $date_naissance);
+            $stmt->bindParam(':password', $password);
             $stmt->execute();
 
             // Redirection vers l'agenda après l'ajout du patient
@@ -45,4 +47,5 @@ class PatientController {
             exit();
         }
     }
+
 }

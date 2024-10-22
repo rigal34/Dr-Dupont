@@ -8,6 +8,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Présentation des services</title>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        /* Style amélioré pour la page de services */
+        h1 {
+            text-align: center;
+            color: #0056b3;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .service-section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .service-section h2 {
+            color: #0056b3;
+            font-size: 1.8em;
+        }
+        .service-section p {
+            font-size: 1.1em;
+            line-height: 1.6em;
+        }
+        .service-section img {
+            max-width: 100px;
+            float: left;
+            margin-right: 15px;
+            border-radius: 8px;
+        }
+        .service-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .service-list li {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #e0f7fa;
+            border-left: 5px solid #0056b3;
+            font-size: 1.2em;
+        }
+        .back-to-home {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #0056b3;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        .back-to-home:hover {
+            background-color: #003d82;
+        }
+    </style>
     <script>
         function showSection(section) {
             document.getElementById('soins-dentaires').style.display = 'none';
@@ -19,7 +73,8 @@
 </head>
 <body>
 <?php include __DIR__ . '/navbar.php'; ?>
-<h1>Présentation des services du Dr. Dupont</h1>
+
+<h1>Découvrez Nos Services Dentaires</h1>
 
 <!-- Menu déroulant -->
 <label for="service-select">Choisir une catégorie de services :</label>
@@ -30,54 +85,39 @@
 </select>
 
 <!-- Section Soins dentaires courants -->
-<div id="soins-dentaires" style="display: block;">
-    <h2>Soins dentaires courants</h2>
-    <p>Le Dr. Dupont propose une large gamme de soins dentaires courants pour garantir la santé de vos dents et de vos gencives. Parmi ces soins, nous proposons :</p>
-    <?php if (!empty($services)): ?>
-        <?php foreach ($services as $service): ?>
-            <?php if ($service['nom_service'] === 'esthetique'): ?>
-                <p><strong><?= htmlspecialchars($service['nom_service']) ?> :</strong> <?= htmlspecialchars($service['description']) ?></p>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>Aucun service trouvé.</p>
-    <?php endif; ?>
-    <p>Nos soins comprennent le détartrage, le polissage et d'autres soins pour maintenir une bonne hygiène bucco-dentaire.</p>
+<div id="soins-dentaires" class="service-section" style="display: block;">
+    <h2>Soins Dentaires Courants</h2>
+    <p>Le Dr. Dupont propose une gamme complète de soins dentaires pour vous assurer une santé bucco-dentaire optimale. Nos services incluent :</p>
+    <ul class="service-list">
+        <li>Esthétique : Détartrage et polissage pour des dents propres et brillantes.</li>
+        <li>Plombages et réparations des caries.</li>
+        <li>Traitement des gencives pour prévenir les infections parodontales.</li>
+    </ul>
 </div>
 
 <!-- Section Orthodontie -->
-<div id="orthodontie" style="display: none;">
+<div id="orthodontie" class="service-section" style="display: none;">
     <h2>Orthodontie</h2>
-    <p>L'orthodontie concerne le traitement des mauvaises positions des dents et des mâchoires. Le Dr. Dupont est spécialisé dans :</p>
-    <?php if (!empty($services)): ?>
-        <?php foreach ($services as $service): ?>
-            <?php if ($service['nom_service'] === 'orthodontie'): ?>
-                <p><strong><?= htmlspecialchars($service['nom_service']) ?> :</strong> <?= htmlspecialchars($service['description']) ?></p>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>Aucun service trouvé.</p>
-    <?php endif; ?>
-    <p>Le traitement inclut des appareils dentaires, des aligneurs transparents et des solutions pour enfants et adultes.</p>
+    <p>L'orthodontie est dédiée à la correction des malpositions dentaires. Nous proposons :</p>
+    <ul class="service-list">
+        <li>Appareils dentaires fixes et amovibles.</li>
+        <li>Alignement transparent pour un traitement discret.</li>
+        <li>Solutions orthodontiques pour enfants et adultes.</li>
+    </ul>
 </div>
 
 <!-- Section Implantation -->
-<div id="implantation" style="display: none;">
-    <h2>Implantation</h2>
-    <p>Le Dr. Dupont propose des services d'implantologie pour remplacer les dents manquantes de manière durable et esthétique. Ce service inclut :</p>
-    <?php if (!empty($services)): ?>
-        <?php foreach ($services as $service): ?>
-            <?php if ($service['nom_service'] === 'implantation'): ?>
-                <p><strong><?= htmlspecialchars($service['nom_service']) ?> :</strong> <?= htmlspecialchars($service['description']) ?></p>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>Aucun service trouvé.</p>
-    <?php endif; ?>
-    <p>Nos implants dentaires sont conçus pour s'intégrer parfaitement avec vos dents naturelles, garantissant un sourire naturel et une excellente fonctionnalité.</p>
+<div id="implantation" class="service-section" style="display: none;">
+    <h2>Implants Dentaires</h2>
+    <p>Remplacez vos dents manquantes grâce à nos solutions d'implantologie. Nos services incluent :</p>
+    <ul class="service-list">
+        <li>Implants dentaires biocompatibles pour une intégration parfaite.</li>
+        <li>Couronnes et bridges sur implants pour un sourire naturel.</li>
+        <li>Suivi post-opératoire personnalisé pour un rétablissement rapide.</li>
+    </ul>
 </div>
 
-<a href="/">Retour à l'accueil</a>
+<a href="/" class="back-to-home">Retour à l'accueil</a>
 
 </body>
 </html>

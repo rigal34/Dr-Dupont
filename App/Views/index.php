@@ -53,6 +53,8 @@
 </p>
 
 
+
+
 <a href="/patient/create" class="button">Prendre un rendez-vous</a>
 
 
