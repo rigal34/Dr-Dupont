@@ -8,7 +8,7 @@
 <body>
 <h1>Inscription</h1>
 
-<form method="POST" action="/inscription/store">
+<form method="POST" action="/inscription">
     <label for="nom">Nom :</label>
     <input type="text" id="nom" name="nom" required><br><br>
 
@@ -29,6 +29,7 @@
 
     <button type="submit">S'inscrire</button>
 </form>
+
 
 </body>
 </html>

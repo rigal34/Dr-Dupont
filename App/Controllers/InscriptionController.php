@@ -2,17 +2,29 @@
 
 namespace App\Controllers;
 
+use PDO;
+use PDOException;
+use App\Models\Patient;
+
 class InscriptionController {
-    // Méthode pour afficher le formulaire d'inscription
-    public function index(): void {
-        // On n'a pas besoin de connexion à la base de données ici
-        require_once __DIR__ . '/../Views/inscription.php';  // Charge la vue d'inscription
+    private PDO $pdo;
+    private $patient;
+
+    public function __construct()
+    {
+        global $pdo;
+        $this->patient = new Patient($pdo);
+
+        try {
+            $this->pdo = new PDO('mysql:host=localhost;dbname=gestion_rendez_vous', 'root', '');
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Erreur de connexion à la base de données : " . $e->getMessage());
+        }
     }
 
-    // Méthode pour traiter la soumission du formulaire et enregistrer le patient
-    public function store(): void {
-        // Connexion à la base de données uniquement pour l'insertion
-        $db = require_once __DIR__ . '/../Config/config.php';
+
+    public function index(): void {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nom = $_POST['nom'];
@@ -21,21 +33,12 @@ class InscriptionController {
             $telephone = $_POST['telephone'];
             $date_naissance = $_POST['date_naissance'];
             $password = password_hash($_POST['password'], PASSWORD_BCRYPT);  // Hachage du mot de passe
-
-            // Insérer les données dans la base de données
-            $stmt = $db->prepare("INSERT INTO patients (nom, prenom, email, telephone, date_naissance, password) 
-                                  VALUES (:nom, :prenom, :email, :telephone, :date_naissance, :password)");
-            $stmt->bindParam(':nom', $nom);
-            $stmt->bindParam(':prenom', $prenom);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':telephone', $telephone);
-            $stmt->bindParam(':date_naissance', $date_naissance);
-            $stmt->bindParam(':password', $password);
-            $stmt->execute();
-
-            // Redirection vers la page de confirmation ou de prise de rendez-vous
+            $this->patient->create($nom, $prenom, $email, $telephone, $date_naissance, $password);
             header('Location: /rendezvous');
             exit();
+        }else{
+            require_once __DIR__ . '/../Views/inscription.php';
         }
     }
 }
+require_once __DIR__ . '/../Config/config.php';
