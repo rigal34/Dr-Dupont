@@ -36,7 +36,30 @@ switch ($uriSegments[0]) {
 
     case 'services':  // Nouvelle route pour la page des services
         $controller = new ServiceController();
-        $controller->index(); // Affiche la page des services
+        if (isset($uriSegments[1])) {
+            switch ($uriSegments[1]) {
+                case 'create':
+                    $controller->create();  // Page pour créer un nouveau service
+                    break;
+                case 'store':
+                    $controller->store();  // Enregistre un nouveau service
+                    break;
+                case 'edit':
+                    $controller->edit($uriSegments[2] ?? null);  // Page d'édition pour un service spécifique
+                    break;
+                case 'update':
+                    $controller->update($uriSegments[2] ?? null);  // Met à jour un service spécifique
+                    break;
+                case 'delete':
+                    $controller->delete($uriSegments[2] ?? null);  // Supprime un service spécifique
+                    break;
+                default:
+                    $controller->index();  // Page principale de la liste des services
+                    break;
+            }
+        } else {
+            $controller->index();  // Affiche la liste des services si aucun segment d'URI n'est fourni
+        }
         break;
 
     case 'about':  // Nouvelle route pour la page À propos
