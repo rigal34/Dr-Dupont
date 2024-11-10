@@ -66,10 +66,38 @@ switch ($uriSegments[0]) {
         $controller = new AboutController();
         $controller->index(); // Affiche la page "À propos"
         break;
-    case 'news':  // Route pour la page d'actualités
-        $controller = new NewsController(); // Gère la page statique
-        $controller->index(); // Affiche la page d'actualités
+    case 'news':  // Gestion des actualités
+        $controller = new NewsController();
+        if (isset($uriSegments[1])) {
+            switch ($uriSegments[1]) {
+                case 'create':
+                    $controller->create();  // Affiche le formulaire de création d'actualité
+                    break;
+                case 'store':
+                    $controller->store();  // Enregistre une nouvelle actualité
+                    break;
+                case 'edit':
+                    $controller->edit($uriSegments[2] ?? null);  // Page d'édition pour une actualité spécifique
+                    break;
+                case 'update':
+                    $controller->update($uriSegments[2] ?? null);  // Met à jour une actualité spécifique
+                    break;
+                case 'delete':
+                    $controller->delete($uriSegments[2] ?? null);  // Supprime une actualité spécifique
+                    break;
+                default:
+                    $controller->index();  // Page principale pour afficher toutes les actualités
+                    break;
+            }
+        } else {
+            $controller->index();  // Affiche la liste des actualités si aucun segment d'URI n'est fourni
+        }
         break;
+
+
+
+
+
 
     case 'inscription':
         $controller = new InscriptionController();
