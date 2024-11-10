@@ -7,61 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Présentation des services</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <style>
-        /* Style amélioré pour la page de services */
-        h1 {
-            text-align: center;
-            color: #0056b3;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        .service-section {
-            margin: 20px 0;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        .service-section h2 {
-            color: #0056b3;
-            font-size: 1.8em;
-        }
-        .service-section p {
-            font-size: 1.1em;
-            line-height: 1.6em;
-        }
-        .service-section img {
-            max-width: 100px;
-            float: left;
-            margin-right: 15px;
-            border-radius: 8px;
-        }
-        .service-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .service-list li {
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #e0f7fa;
-            border-left: 5px solid #0056b3;
-            font-size: 1.2em;
-        }
-        .back-to-home {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #0056b3;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-        }
-        .back-to-home:hover {
-            background-color: #003d82;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
     <script>
         function showSection(section) {
             document.getElementById('soins-dentaires').style.display = 'none';
@@ -75,6 +21,33 @@
 <?php include __DIR__ . '/navbar.php'; ?>
 
 <h1>Découvrez Nos Services Dentaires</h1>
+<!-- Liste des services -->
+<?php if (!empty($services)): ?>
+    <?php foreach ($services as $service): ?>
+        <div class="service-section">
+            <h2><?= htmlspecialchars($service['nom_service']) ?></h2>
+            <p><?= htmlspecialchars($service['description']) ?></p>
+
+            <div class="action-buttons">
+                <a href="/services/edit/<?= $service['id'] ?>" class="btn btn-secondary">Modifier</a>
+                <a href="/services/delete/<?= $service['id'] ?>" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ce service ?')">Supprimer</a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p>Aucun service trouvé.</p>
+<?php endif; ?>
+
+
+
+
+
+
+
+<!-- Bouton pour créer un nouveau service -->
+<div style="text-align: center; margin: 20px;">
+    <a href="/services/create" class="btn btn-primary">Créer un nouveau service</a>
+</div>
 
 <!-- Menu déroulant -->
 <label for="service-select">Choisir une catégorie de services :</label>
@@ -93,6 +66,10 @@
         <li>Plombages et réparations des caries.</li>
         <li>Traitement des gencives pour prévenir les infections parodontales.</li>
     </ul>
+    <div class="action-buttons">
+        <a href="/services/edit/1" class="btn btn-secondary">Modifier</a>
+        <a href="/services/delete/1" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ce service ?')">Supprimer</a>
+    </div>
 </div>
 
 <!-- Section Orthodontie -->
@@ -104,6 +81,10 @@
         <li>Alignement transparent pour un traitement discret.</li>
         <li>Solutions orthodontiques pour enfants et adultes.</li>
     </ul>
+    <div class="action-buttons">
+        <a href="/services/edit/2" class="btn btn-secondary">Modifier</a>
+        <a href="/services/delete/2" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ce service ?')">Supprimer</a>
+    </div>
 </div>
 
 <!-- Section Implantation -->
@@ -115,12 +96,17 @@
         <li>Couronnes et bridges sur implants pour un sourire naturel.</li>
         <li>Suivi post-opératoire personnalisé pour un rétablissement rapide.</li>
     </ul>
+    <div class="action-buttons">
+        <a href="/services/edit/3" class="btn btn-secondary">Modifier</a>
+        <a href="/services/delete/3" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ce service ?')">Supprimer</a>
+    </div>
 </div>
 
 <a href="/" class="back-to-home">Retour à l'accueil</a>
 
 </body>
 </html>
+
 
 
 

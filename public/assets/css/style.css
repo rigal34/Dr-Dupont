@@ -55,3 +55,78 @@ ul li {
 .button:hover {
     background-color: #0056b3; /* Couleur au survol */
 }
+/* Style amélioré pour la page de services */
+h1 {
+    text-align: center;
+    color: #0056b3;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+.service-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+.service-section h2 {
+    color: #0056b3;
+    font-size: 1.8em;
+}
+.service-section p {
+    font-size: 1.1em;
+    line-height: 1.6em;
+}
+.service-section img {
+    max-width: 100px;
+    float: left;
+    margin-right: 15px;
+    border-radius: 8px;
+}
+.service-list {
+    list-style-type: none;
+    padding: 0;
+}
+.service-list li {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #e0f7fa;
+    border-left: 5px solid #0056b3;
+    font-size: 1.2em;
+}
+.back-to-home {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+}
+.back-to-home:hover {
+    background-color: #003d82;
+}
+/* Boutons d'action */
+.action-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1em;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+}
+.btn-primary { background-color: #007bff; }
+.btn-secondary { background-color: #6c757d; }
+.btn-danger { background-color: #dc3545; }
+.btn-primary:hover { background-color: #0056b3; }
+.btn-secondary:hover { background-color: #5a6268; }
+.btn-danger:hover { background-color: #c82333; }
+

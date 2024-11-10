@@ -21,7 +21,7 @@ class ServiceController
     public function index(): void
     {
         $services = $this->serviceModel->getAll();
-        require_once __DIR__ . '/../Views/services.php';
+        include __DIR__ . '/../Views/services.php';
     }
 
     public function create(): void
