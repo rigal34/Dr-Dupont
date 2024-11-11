@@ -68,7 +68,11 @@ switch ($uriSegments[0]) {
         break;
     case 'news':  // Gestion des actualités
         $controller = new NewsController();
+
         if (isset($uriSegments[1])) {
+
+
+
             switch ($uriSegments[1]) {
                 case 'create':
                     $controller->create();  // Affiche le formulaire de création d'actualité
