@@ -10,6 +10,7 @@
         <li><a href="/rendezvous">Rendez-vous</a></li>
         <li><a href="/about">À propos</a></li>
         <li><a href="/news">Actualités</a></li>
+        <li><a href="/login">Connexion</a></li>
     </ul>
 </nav>
 

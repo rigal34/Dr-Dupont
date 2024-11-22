@@ -130,3 +130,116 @@ h1 {
 .btn-secondary:hover { background-color: #5a6268; }
 .btn-danger:hover { background-color: #c82333; }
 
+/* Bouton pour les news */
+
+.btn-container {
+    text-align: right;
+    margin: 20px 0;
+}
+.btn {
+    padding: 10px 15px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1em;
+}
+.btn-primary {
+    background-color: #007bff;
+}
+.btn-secondary {
+    background-color: #6c757d;
+}
+.btn-danger {
+    background-color: #dc3545;
+}
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Style pour l'agencement des actualités */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.news-item {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.news-item img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.news-item h2 {
+    color: #0056b3;
+}
+.news-item .source {
+    font-size: 0.9em;
+    color: #777;
+}
+.news-item .action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #0056b3;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-control {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0px 0px 5px rgba(0, 86, 179, 0.2);
+}
+
+.btn-primary {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn-primary:hover {
+    background-color: #004494;
+}

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../vendor/autoload.php';
 require_once '../App/Config/config.php';
 
@@ -9,8 +10,11 @@ use App\Controllers\ServiceController;
 use App\Controllers\AboutController;
 use App\Controllers\NewsController;
 use App\Controllers\InscriptionController;
+use App\Controllers\AdminController;
+
 $uri = $_SERVER['REQUEST_URI'] ?? '/';
 $uriSegments = explode('/', trim(parse_url($uri, PHP_URL_PATH), '/'));
+$admincontroller = new AdminController();
 
 switch ($uriSegments[0]) {
     case '':
@@ -19,13 +23,65 @@ switch ($uriSegments[0]) {
         $articleController = new ArticleController();
         $articleController->index();
         break;
+    case 'login':
+        $inscriptionController = new InscriptionController();
+        $inscriptionController->login();
+        break;
 
+
+    case 'administrator':
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login');
+            exit();
+        }
+        $subRoute = $uriSegments[1] ?? null;
+        if ($subRoute === 'articles') {
+            // Gestion CRUD pour `administrator/articles`
+            $action = $uriSegments[2] ?? null;
+            switch ($action) {
+                case 'create':
+                    $admincontroller->createArticle(); // Crée un nouvel article
+                    break;
+                case 'edit':
+                    $admincontroller->editArticle($uriSegments[3] ?? null); // Édite un article spécifique
+                    break;
+                case 'delete':
+                    $admincontroller->deleteArticle($uriSegments[3] ?? null); // Supprime un article spécifique
+                    break;
+                default:
+                    $admincontroller->articles(); // Affiche la liste des articles
+                    break;
+            }
+        } else {
+            $admincontroller->index(); // Route pour `administrator` uniquement si pas de sous-route `articles`
+        }
+        break;
     case 'patient':
-        $controller = new PatientController(); // Pas besoin du qualificateur complet
-        if (isset($uriSegments[1]) && $uriSegments[1] === 'create') {
-            $controller->create();
-        } elseif (isset($uriSegments[1]) && $uriSegments[1] === 'store') {
-            $controller->store();
+        $controller = new PatientController();
+        if (isset($uriSegments[1])) {
+            switch ($uriSegments[1]) {
+                case 'create':
+                    $controller->create(); // Affiche le formulaire pour créer un patient
+                    break;
+                case 'store':
+                    $controller->store(); // Enregistre un nouveau patient
+                    break;
+                case 'edit':
+                    $controller->edit($uriSegments[2] ?? null); // Affiche le formulaire de modification d’un patient spécifique
+                    break;
+                case 'update':
+                    $controller->update($uriSegments[2] ?? null); // Met à jour les informations d’un patient spécifique
+                    break;
+                case 'delete':
+                    $controller->delete($uriSegments[2] ?? null); // Supprime un patient spécifique
+                    break;
+                default:
+                    header("HTTP/1.0 404 Not Found");
+                    echo '404 Not Found';
+                    break;
+            }
+        } else {
+            $controller->index(); // Liste des patients si aucun segment d'URI n'est fourni
         }
         break;
 
@@ -66,37 +122,7 @@ switch ($uriSegments[0]) {
         $controller = new AboutController();
         $controller->index(); // Affiche la page "À propos"
         break;
-    case 'news':  // Gestion des actualités
-        $controller = new NewsController();
 
-        if (isset($uriSegments[1])) {
-
-
-
-            switch ($uriSegments[1]) {
-                case 'create':
-                    $controller->create();  // Affiche le formulaire de création d'actualité
-                    break;
-                case 'store':
-                    $controller->store();  // Enregistre une nouvelle actualité
-                    break;
-                case 'edit':
-                    $controller->edit($uriSegments[2] ?? null);  // Page d'édition pour une actualité spécifique
-                    break;
-                case 'update':
-                    $controller->update($uriSegments[2] ?? null);  // Met à jour une actualité spécifique
-                    break;
-                case 'delete':
-                    $controller->delete($uriSegments[2] ?? null);  // Supprime une actualité spécifique
-                    break;
-                default:
-                    $controller->index();  // Page principale pour afficher toutes les actualités
-                    break;
-            }
-        } else {
-            $controller->index();  // Affiche la liste des actualités si aucun segment d'URI n'est fourni
-        }
-        break;
 
 
 

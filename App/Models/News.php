@@ -49,17 +49,19 @@ class News
      * @param string $publishedAt
      * @return bool
      */
-    public function create(string $title, string $description, string $source, string $url, string $urlToImage, string $publishedAt): bool
+    public function create(string $title, string $description, string $source, string $url, ?string $urlToImage, string $publishedAt, ?string $content): bool
     {
-        $stmt = $this->pdo->prepare('INSERT INTO news (title, description, source, url, urlToImage, publishedAt) VALUES (:title, :description, :source, :url, :urlToImage, :publishedAt)');
+        $stmt = $this->pdo->prepare('INSERT INTO news (title, description, source, url, urlToImage, publishedAt, content) VALUES (:title, :description, :source, :url, :urlToImage, :publishedAt, :content)');
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':source', $source);
         $stmt->bindParam(':url', $url);
         $stmt->bindParam(':urlToImage', $urlToImage);
         $stmt->bindParam(':publishedAt', $publishedAt);
+        $stmt->bindParam(':content', $content);
         return $stmt->execute();
     }
+
 
     /**
      * Met à jour une actualité existante

@@ -5,7 +5,7 @@ namespace App\Controllers;
 use PDO;
 
 class PatientController {
-    private $db;
+    private ?PDO $db;
 
     public function __construct() {
         // Inclure la connexion à la base de données
@@ -17,12 +17,30 @@ class PatientController {
         }
     }
 
-    public function create() {
-        // Affiche le formulaire pour créer un patient
+    public function index(): void
+    {
+        // Récupère tous les patients de la base de données
+        $stmt = $this->db->query("SELECT * FROM patients");
+        $patients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Débogage temporaire
+        
+        // Affiche la vue de la liste des patients
+        require_once __DIR__ . '/../Views/patient_list.php';
+    }
+
+
+
+
+    public function create(): void
+    {
+
         require_once __DIR__ . '/../Views/patient_form.php';
     }
 
-    public function store() {
+    public function store(): void
+    {
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
@@ -42,10 +60,30 @@ class PatientController {
             $stmt->bindParam(':password', $password);
             $stmt->execute();
 
+
+
             // Redirection vers l'agenda après l'ajout du patient
             header('Location: /rendezvous/show');
+
             exit();
         }
     }
+
+    public function edit($id): void
+    {
+
+    }
+
+    public function update($id): void
+    {
+
+    }
+
+    public function delete($id): void
+    {
+
+    }
+
+
 
 }
