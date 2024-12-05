@@ -36,6 +36,7 @@ switch ($uriSegments[0]) {
         }
         $subRoute = $uriSegments[1] ?? null;
         if ($subRoute === 'articles') {
+
             // Gestion CRUD pour `administrator/articles`
             $action = $uriSegments[2] ?? null;
             switch ($action) {
@@ -49,6 +50,8 @@ switch ($uriSegments[0]) {
                     $admincontroller->deleteArticle($uriSegments[3] ?? null); // Supprime un article spécifique
                     break;
                 default:
+                    // Charger la page `news.php` pour la liste des actualités
+                    require_once __DIR__ . '/../App/Views/news.php';
                     $admincontroller->articles(); // Affiche la liste des articles
                     break;
             }
