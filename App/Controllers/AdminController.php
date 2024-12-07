@@ -1,9 +1,21 @@
 <?php
 
 namespace App\Controllers;
-
+use App\Models\News;
 class AdminController
 {
+    private News $newsModel;
+
+    public function __construct()
+    {
+        // Connexion à la base de données avec le bon espace de noms pour PDO
+        $pdo = new \PDO('mysql:host=localhost;dbname=gestion_rendez_vous', 'root', '');
+        $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+        // Instanciation du modèle News
+        $this->newsModel = new News($pdo);
+    }
+
     public function index()
     {
         // Charger la vue de la page d'accueil

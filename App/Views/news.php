@@ -15,7 +15,7 @@
 
     <!-- Bouton pour ajouter une nouvelle actualité -->
     <div class="btn-container" style="text-align: right; margin-bottom: 20px;">
-        <a href="/news/create" class="btn btn-primary">Ajouter une actualité</a>
+        <a href="articles/create" class="btn btn-primary">Ajouter une actualité</a>
     </div>
 
     <!-- Actualités statiques -->
