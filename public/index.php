@@ -28,6 +28,12 @@ switch ($uriSegments[0]) {
         $inscriptionController->login();
         break;
 
+    case 'logout' :
+        $_SESSION = [];
+        session_destroy();
+        header('Location: /');
+        break;
+
 
     case 'administrator':
         if (!isset($_SESSION['user_id'])) {
