@@ -33,7 +33,9 @@ switch ($uriSegments[0]) {
         session_destroy();
         header('Location: /');
         break;
-
+    case 'news':
+        include __DIR__ . '/../App/Views/news.php'; // Charge la vue des actualités côté utilisateur
+        break;
 
     case 'administrator':
         if (!isset($_SESSION['user_id'])) {
