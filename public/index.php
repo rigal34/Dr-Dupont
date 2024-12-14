@@ -33,6 +33,7 @@ switch ($uriSegments[0]) {
         session_destroy();
         header('Location: /');
         break;
+
     case 'news':
         include __DIR__ . '/../App/Views/news.php'; // Charge la vue des actualités côté utilisateur
         break;
@@ -133,10 +134,6 @@ switch ($uriSegments[0]) {
         $controller = new AboutController();
         $controller->index(); // Affiche la page "À propos"
         break;
-
-
-
-
 
 
 

@@ -1,5 +1,11 @@
 <?php
+// Définit une variable d'URL par défaut
+$requestUri = $_SERVER['REQUEST_URI'] ?? '/';
+
+// Vérifie si on est dans /administrator/articles
+$showAdminButtons = str_contains($requestUri, '/administrator/articles');
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,13 +16,16 @@
 </head>
 <body>
 <?php include __DIR__ . '/navbar.php'; ?>
+
 <div class="container">
     <h1>Actualités Santé</h1>
 
-    <!-- Bouton pour ajouter une nouvelle actualité -->
-    <div class="btn-container" style="text-align: right; margin-bottom: 20px;">
-        <a href="articles/create" class="btn btn-primary">Ajouter une actualité</a>
-    </div>
+    <!-- MODIFICATION : Bouton Ajouter une actualité (uniquement pour /administrator/articles) -->
+    <?php if ($showAdminButtons): ?>
+        <div class="btn-container" style="text-align: right; margin-bottom: 20px;">
+            <a href="/administrator/articles/create" class="btn btn-primary">Ajouter une actualité</a>
+        </div>
+    <?php endif; ?>
 
     <!-- Actualités statiques -->
     <div class="news-item">
@@ -26,12 +35,15 @@
         <p class="source">Source: Journal de la Santé - Publié le 18 octobre 2024</p>
         <a href="https://example.com/article-medecine-dentaire" target="_blank">Lire l'article complet</a>
 
-        <!-- Boutons Modifier et Supprimer -->
-        <div class="action-buttons">
-            <button type="button" class="btn btn-secondary">Modifier</button>
-            <button type="button" class="btn btn-danger">Supprimer</button>
-        </div>
+        <!-- MODIFICATION : Boutons Modifier et Supprimer (uniquement pour /administrator/articles) -->
+        <?php if ($showAdminButtons): ?>
+            <div class="action-buttons">
+                <button type="button" class="btn btn-secondary">Modifier</button>
+                <button type="button" class="btn btn-danger">Supprimer</button>
+            </div>
+        <?php endif; ?>
     </div>
+
 
     <div class="news-item">
         <h2>Prévention des caries chez les enfants : Les dernières recommandations</h2>
@@ -40,12 +52,15 @@
         <p class="source">Source: Santé Magazine - Publié le 10 octobre 2024</p>
         <a href="https://example.com/article-prevention-caries" target="_blank">Lire l'article complet</a>
 
-        <!-- Boutons Modifier et Supprimer -->
-        <div class="action-buttons">
-            <button type="button" class="btn btn-secondary">Modifier</button>
-            <button type="button" class="btn btn-danger">Supprimer</button>
-        </div>
+        <!-- MODIFICATION : Boutons Modifier et Supprimer (uniquement pour /administrator/articles) -->
+        <?php if ($showAdminButtons): ?>
+            <div class="action-buttons">
+                <button type="button" class="btn btn-secondary">Modifier</button>
+                <button type="button" class="btn btn-danger">Supprimer</button>
+            </div>
+        <?php endif; ?>
     </div>
+
 
     <div class="news-item">
         <h2>Le blanchiment des dents : Les risques et les avantages</h2>
@@ -54,12 +69,15 @@
         <p class="source">Source: Le Monde Dentaire - Publié le 5 octobre 2024</p>
         <a href="https://example.com/article-blanchiment-dents" target="_blank">Lire l'article complet</a>
 
-        <!-- Boutons Modifier et Supprimer -->
-        <div class="action-buttons">
-            <button type="button" class="btn btn-secondary">Modifier</button>
-            <button type="button" class="btn btn-danger">Supprimer</button>
-        </div>
+        <!-- MODIFICATION : Boutons Modifier et Supprimer (uniquement pour /administrator/articles) -->
+        <?php if ($showAdminButtons): ?>
+            <div class="action-buttons">
+                <button type="button" class="btn btn-secondary">Modifier</button>
+                <button type="button" class="btn btn-danger">Supprimer</button>
+            </div>
+        <?php endif; ?>
     </div>
+
 
     <!-- Actualités dynamiques -->
     <?php if (!empty($actualites)): ?>
@@ -80,6 +98,7 @@
         <?php endforeach; ?>
     <?php endif; ?>
 </div>
+
 </body>
 </html>
 
