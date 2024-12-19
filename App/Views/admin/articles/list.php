@@ -11,21 +11,35 @@
     <title>Administrateur 2 - Tableau de bord</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom fonts for this template-->
+    <link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
 
 <!-- Page Wrapper -->
 <?php
-$currentUrl = $_SERVER['REQUEST_URI']; // Obtenir l'URL actuelle
-if (strpos($currentUrl, '/administrator/articles') === false): ?>
+// Définit $currentUrl pour capturer l'URL actuelle
+$currentUrl = $_SERVER['REQUEST_URI'] ?? '/'; // Valeur par défaut si REQUEST_URI est indisponible
+
+// Vérifie si l'URL actuelle ne contient pas '/administrator/articles'
+if (!str_contains($currentUrl, '/administrator/articles')): ?>
 <div id="wrapper">
     <?php endif; ?>
+
+
+    <!-- Votre code HTML -->
+
+    <?php if (!str_contains($currentUrl, '/administrator/articles')): ?>
+</div> <!-- Fin du wrapper -->
+<?php endif; ?>
+
+
 
     <!-- Sidebar -->
 
