@@ -24,7 +24,7 @@ class AdminController
         require_once __DIR__ . '/../Views/admin/index.php';
     }
 
-    public function articles()
+    public function articles(): void
     {
         // Récupérer tous les articles via le modèle
         $articles = $this->newsModel->getAll();
@@ -33,10 +33,12 @@ class AdminController
         require_once __DIR__ . '/../Views/admin/articles/list.php';
     }
 
-    public function createArticle()
+    public function createArticle(): void
     {
+        // Vérifier si la requête est de type POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['source']) && !empty($_POST['url']) && !empty($_POST['publishedAt'])) {
+                // Assainir les données reçues
                 $title = htmlspecialchars($_POST['title']);
                 $description = htmlspecialchars($_POST['description']);
                 $source = htmlspecialchars($_POST['source']);
@@ -45,11 +47,16 @@ class AdminController
                 $publishedAt = $_POST['publishedAt'];
                 $content = $_POST['content'] ?? null;
 
-                $this->newsModel->create($title, $description, $source, $url, $urlToImage, $publishedAt, $content);
+                // Ajouter l'article à la base de données
+                $success = $this->newsModel->create($title, $description, $source, $url, $urlToImage, $publishedAt, $content);
 
-                // Redirection après création
-                header('Location: /administrator/articles');
-                exit();
+                if ($success) {
+                    // Redirection après la création réussie
+                    header('Location: /administrator/articles');
+                    exit();
+                } else {
+                    echo "Erreur lors de l'insertion dans la base de données.";
+                }
             } else {
                 echo "Veuillez remplir tous les champs requis.";
             }
@@ -58,6 +65,7 @@ class AdminController
         // Charger la vue du formulaire de création
         require_once __DIR__ . '/../Views/admin/articles/create.php';
     }
+
 
     public function deleteArticle($id)
     {

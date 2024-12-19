@@ -21,8 +21,12 @@ class News
     public function getAll(): array
     {
         $stmt = $this->pdo->query('SELECT * FROM news ORDER BY publishedAt DESC');
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Retourner un tableau vide si aucun résultat
+        return $articles ?: [];
     }
+
 
     /**
      * Récupère une actualité spécifique par ID
