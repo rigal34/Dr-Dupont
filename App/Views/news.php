@@ -1,4 +1,5 @@
 <?php
+
 // Définit une variable d'URL par défaut
 $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
 
