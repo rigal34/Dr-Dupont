@@ -35,8 +35,13 @@ switch ($uriSegments[0]) {
         break;
 
     case 'news':
-        include __DIR__ . '/../App/Views/news.php'; // Charge la vue des actualités côté utilisateur
+        $newsController = new \App\Controllers\NewsController();
+        $newsController->index();
         break;
+
+
+
+
 
     case 'administrator':
         if (!isset($_SESSION['user_id'])) {

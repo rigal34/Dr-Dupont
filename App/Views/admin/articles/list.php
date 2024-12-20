@@ -65,7 +65,11 @@ if (!str_contains($currentUrl, '/administrator/articles')): ?>
                                 <?php if (!empty($article['urlToImage'])): ?>
                                     <img src="<?= htmlspecialchars($article['urlToImage']) ?>" alt="<?= htmlspecialchars($article['title']) ?>" style="max-width: 100%; height: auto; margin-bottom: 10px;">
                                 <?php endif; ?>
-                                <a href="<?= htmlspecialchars($article['url']) ?>" target="_blank" class="btn btn-info btn-sm">Lire l'article complet</a>
+                                <!-- Lien cliquable simple -->
+                                <a href="<?= htmlspecialchars($article['url']) ?>" target="_blank">
+                                    Lire l'article complet
+                                </a>
+
                                 <div class="action-buttons" style="margin-top: 10px;">
                                     <a href="/administrator/articles/edit/<?= $article['id'] ?>" class="btn btn-secondary btn-sm">Modifier</a>
                                     <a href="/administrator/articles/delete/<?= $article['id'] ?>" onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')" class="btn btn-danger btn-sm">Supprimer</a>
