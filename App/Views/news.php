@@ -35,16 +35,7 @@ $showAdminButtons = str_contains($requestUri, '/administrator/articles');
         <p>Découvrez comment les nouvelles technologies transforment le domaine des soins dentaires...</p>
         <p class="source">Source: Journal de la Santé - Publié le 18 octobre 2024</p>
         <a href="https://example.com/article-medecine-dentaire" target="_blank">Lire l'article complet</a>
-
-        <!-- MODIFICATION : Boutons Modifier et Supprimer (uniquement pour /administrator/articles) -->
-        <?php if ($showAdminButtons): ?>
-            <div class="action-buttons">
-                <button type="button" class="btn btn-secondary">Modifier</button>
-                <button type="button" class="btn btn-danger">Supprimer</button>
-            </div>
-        <?php endif; ?>
     </div>
-
 
     <div class="news-item">
         <h2>Prévention des caries chez les enfants : Les dernières recommandations</h2>
@@ -52,55 +43,26 @@ $showAdminButtons = str_contains($requestUri, '/administrator/articles');
         <p>Les experts en santé dentaire encouragent les parents à adopter des pratiques rigoureuses...</p>
         <p class="source">Source: Santé Magazine - Publié le 10 octobre 2024</p>
         <a href="https://example.com/article-prevention-caries" target="_blank">Lire l'article complet</a>
-
-        <!-- MODIFICATION : Boutons Modifier et Supprimer (uniquement pour /administrator/articles) -->
-        <?php if ($showAdminButtons): ?>
-            <div class="action-buttons">
-                <button type="button" class="btn btn-secondary">Modifier</button>
-                <button type="button" class="btn btn-danger">Supprimer</button>
-            </div>
-        <?php endif; ?>
     </div>
 
-
-    <div class="news-item">
-        <h2>Le blanchiment des dents : Les risques et les avantages</h2>
-        <img src="https://example.com/images/blanchiment-dents.jpg" alt="Blanchiment des dents">
-        <p>Le blanchiment des dents est devenu une pratique courante...</p>
-        <p class="source">Source: Le Monde Dentaire - Publié le 5 octobre 2024</p>
-        <a href="https://example.com/article-blanchiment-dents" target="_blank">Lire l'article complet</a>
-
-        <!-- MODIFICATION : Boutons Modifier et Supprimer (uniquement pour /administrator/articles) -->
-        <?php if ($showAdminButtons): ?>
-            <div class="action-buttons">
-                <button type="button" class="btn btn-secondary">Modifier</button>
-                <button type="button" class="btn btn-danger">Supprimer</button>
-            </div>
-        <?php endif; ?>
-    </div>
-
+    <!-- Titre pour les actualités dynamiques -->
+    <h2>Plus d'actualités</h2>
 
     <!-- Actualités dynamiques -->
-    <?php if (!empty($actualites)): ?>
-        <?php foreach ($actualites as $actualite): ?>
+    <?php if (!empty($articles)): ?>
+        <?php foreach ($articles as $article): ?>
             <div class="news-item">
-                <h2><?= htmlspecialchars($actualite['title']) ?></h2>
-                <img src="<?= htmlspecialchars($actualite['urlToImage']) ?>" alt="<?= htmlspecialchars($actualite['title']) ?>">
-                <p><?= htmlspecialchars($actualite['description']) ?></p>
-                <p class="source">Source: <?= htmlspecialchars($actualite['source']) ?> - Publié le <?= htmlspecialchars($actualite['publishedAt']) ?></p>
-                <a href="<?= htmlspecialchars($actualite['url']) ?>" target="_blank">Lire l'article complet</a>
-
-                <!-- Boutons Modifier et Supprimer pour les actualités dynamiques -->
-                <div class="action-buttons">
-                    <a href="/news/edit/<?= $actualite['id'] ?>" class="btn btn-secondary">Modifier</a>
-                    <a href="/news/delete/<?= $actualite['id'] ?>" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cette actualité ?')">Supprimer</a>
-                </div>
+                <h3><?= htmlspecialchars($article['title']) ?></h3>
+                <img src="<?= htmlspecialchars($article['urlToImage']) ?>" alt="<?= htmlspecialchars($article['title']) ?>">
+                <p><?= htmlspecialchars($article['description']) ?></p>
+                <p class="source">Source: <?= htmlspecialchars($article['source']) ?> - Publié le <?= htmlspecialchars($article['publishedAt']) ?></p>
+                <a href="<?= htmlspecialchars($article['url']) ?>" target="_blank">Lire l'article complet</a>
             </div>
         <?php endforeach; ?>
+    <?php else: ?>
+        <p>Aucune actualité disponible pour le moment.</p>
     <?php endif; ?>
 </div>
 
 </body>
 </html>
-
-

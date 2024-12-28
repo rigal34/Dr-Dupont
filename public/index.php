@@ -35,7 +35,7 @@ switch ($uriSegments[0]) {
         break;
 
     case 'news':
-        $newsController = new \App\Controllers\NewsController();
+        $newsController = new NewsController();
         $newsController->index();
         break;
 

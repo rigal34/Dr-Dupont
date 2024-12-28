@@ -29,6 +29,8 @@ class AdminController
         // Récupérer tous les articles via le modèle
         $articles = $this->newsModel->getAll();
 
+
+
         // Charger la vue avec les articles
         require_once __DIR__ . '/../Views/admin/articles/list.php';
     }

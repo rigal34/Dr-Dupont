@@ -20,12 +20,15 @@ class NewsController
     // Méthode principale pour afficher toutes les actualités
     public function index(): void
     {
-        // Récupération des articles via le modèle
+        // Récupérer toutes les actualités
         $articles = $this->newsModel->getAll();
 
-        // Passe les articles à la vue
+
+
+        // Charger la vue publique
         require_once __DIR__ . '/../Views/news.php';
     }
+
 
 
 
