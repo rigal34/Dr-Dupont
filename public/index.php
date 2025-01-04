@@ -2,6 +2,8 @@
 session_start();
 require_once '../vendor/autoload.php';
 require_once '../App/Config/config.php';
+require_once '../App/helpers.php'; // Inclusion du fichier helpers.php
+
 
 use App\Controllers\ArticleController;
 use App\Controllers\PatientController;
@@ -11,10 +13,12 @@ use App\Controllers\AboutController;
 use App\Controllers\NewsController;
 use App\Controllers\InscriptionController;
 use App\Controllers\AdminController;
+use App\Controllers\UserController;
+
 
 $uri = $_SERVER['REQUEST_URI'] ?? '/';
 $uriSegments = explode('/', trim(parse_url($uri, PHP_URL_PATH), '/'));
-$admincontroller = new AdminController();
+
 
 switch ($uriSegments[0]) {
     case '':
@@ -49,28 +53,59 @@ switch ($uriSegments[0]) {
             exit();
         }
         $subRoute = $uriSegments[1] ?? null;
+        $adminController = new AdminController();
         if ($subRoute === 'articles') {
 
             // Gestion CRUD pour `administrator/articles`
             $action = $uriSegments[2] ?? null;
+
             switch ($action) {
                 case 'create':
-                    $admincontroller->createArticle(); // Crée un nouvel article
+                    $adminController->createArticle(); // Crée un nouvel article
                     break;
                 case 'edit':
-                    $admincontroller->editArticle($uriSegments[3] ?? null); // Édite un article spécifique
+                    $adminController->editArticle($uriSegments[3] ?? null); // Édite un article spécifique
                     break;
                 case 'delete':
-                    $admincontroller->deleteArticle($uriSegments[3] ?? null); // Supprime un article spécifique
+                    $adminController->deleteArticle($uriSegments[3] ?? null); // Supprime un article spécifique
                     break;
                 default:
                     // Charger la page `news.php` pour la liste des actualités
                     require_once __DIR__ . '/../App/Views/news.php';
-                    $admincontroller->articles(); // Affiche la liste des articles
+                    $adminController->articles(); // Affiche la liste des articles
                     break;
             }
+        } elseif ($subRoute === 'users') {
+
+            // Gestion CRUD pour `administrator/users`
+            $userController = new UserController();
+            $action = $uriSegments[2] ?? null;
+            switch ($action) {
+                case 'create':
+
+                    $userController->create(); // Crée un nouvel utilisateur
+                    break;
+                case 'store':
+
+                    $userController->store(); // Enregistre un nouvel utilisateur
+                    break;
+                case 'edit':
+
+                    $userController->edit($uriSegments[3] ?? null); // Modifie un utilisateur spécifique
+                    break;
+
+                case 'delete':
+
+                    $userController->delete($uriSegments[3] ?? null); // Supprime un utilisateur spécifique
+                    break;
+                default:
+
+                    $userController->index(); // Liste tous les utilisateurs
+                    break;
+            }
+
         } else {
-            $admincontroller->index(); // Route pour `administrator` uniquement si pas de sous-route `articles`
+            $adminController->index(); // Route pour `administrator` uniquement si pas de sous-route `articles`
         }
         break;
     case 'patient':
@@ -134,6 +169,12 @@ switch ($uriSegments[0]) {
             $controller->index();  // Affiche la liste des services si aucun segment d'URI n'est fourni
         }
         break;
+
+
+
+
+
+
 
     case 'about':  // Nouvelle route pour la page À propos
         $controller = new AboutController();

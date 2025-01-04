@@ -44,9 +44,8 @@
             <hr class="sidebar-divider my-0">
         </li>
 
-
         <!-- Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item <?= isActive('/administrator') ?>">
             <a class="nav-link" href="/administrator">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Tableau de bord</span>
@@ -58,9 +57,8 @@
             <hr class="sidebar-divider">
         </li>
 
-
         <!-- Gestion des articles -->
-        <li class="nav-item">
+        <li class="nav-item <?= isActive('/administrator/articles') ?>">
             <a class="nav-link" href="/administrator/articles">
                 <i class="fas fa-newspaper"></i>
                 <span>Gestion des articles</span>
@@ -68,7 +66,7 @@
         </li>
 
         <!-- Gestion des utilisateurs -->
-        <li class="nav-item">
+        <li class="nav-item <?= isActive('/administrator/users') ?>">
             <a class="nav-link" href="/administrator/users">
                 <i class="fas fa-users"></i>
                 <span>Gestion des utilisateurs</span>
@@ -79,9 +77,8 @@
         <li class="nav-item">
             <hr class="sidebar-divider d-none d-md-block">
         </li>
-
-
     </ul>
+
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
