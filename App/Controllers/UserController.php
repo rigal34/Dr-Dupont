@@ -2,18 +2,33 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
+use PDO;
+
 class UserController
 {
-    // Méthode pour afficher la liste des utilisateurs
-    public function index()
+    private User $userModel;
+
+    public function __construct()
     {
-        echo "Affichage de la liste des utilisateurs";
+
+        global $pdo;
+        $this->userModel = new User($pdo);
     }
 
-    // Méthode pour afficher le formulaire de création
-    public function create()
+    public function index(): void
     {
-        echo "Formulaire pour ajouter un utilisateur";
+        // Utilisation de $this->userModel initialisé dans le constructeur
+        $users = $this->userModel->getAll(); // Récupérez les utilisateurs
+        require_once __DIR__ . '/../Views/admin/user_list.php'; // Affichez la vue
+    }
+
+
+
+    // Méthode pour afficher le formulaire de création
+    public function create(): void
+    {
+        require_once __DIR__ . '/../Views/user_form.php'; // Affichez la vue
     }
 
     // Méthode pour enregistrer un utilisateur

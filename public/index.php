@@ -2,7 +2,7 @@
 session_start();
 require_once '../vendor/autoload.php';
 require_once '../App/Config/config.php';
-require_once '../App/helpers.php'; // Inclusion du fichier helpers.php
+require_once '../App/helpers.php';
 
 
 use App\Controllers\ArticleController;
