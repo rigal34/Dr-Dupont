@@ -32,10 +32,30 @@ class UserController
     }
 
     // Méthode pour enregistrer un utilisateur
-    public function store()
+    public function store(): void
     {
-        echo "Enregistrement d'un nouvel utilisateur";
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // Vérifier si l'e-mail existe déjà
+        if ($this->userModel->emailExists($email)) {
+            die('Erreur : Cette adresse e-mail est déjà utilisée.');
+        }
+
+        // Hacher le mot de passe
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+        // Appeler le modèle pour insérer l'utilisateur
+        if ($this->userModel->createUser($name, $email, $passwordHash)) {
+            // Rediriger vers la liste des utilisateurs
+            header('Location: /administrator/users');
+            exit();
+        } else {
+            die('Erreur : Impossible d\'ajouter l\'utilisateur.');
+        }
     }
+
 
     // Méthode pour afficher le formulaire de modification
     public function edit($id)
