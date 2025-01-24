@@ -54,32 +54,46 @@ if (!str_contains($currentUrl, '/administrator/articles')): ?>
 
 
 
-                <?php if (isset($articles) && !empty($articles)): ?>
-                    <div class="news-container">
-                        <?php foreach ($articles as $article): ?>
-                            <div class="news-item card" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
-                                <h2 style="margin-top: 0;"><?= htmlspecialchars($article['title']) ?></h2>
-                                <p><strong>Source :</strong> <?= htmlspecialchars($article['source']) ?></p>
-                                <p><strong>Publié le :</strong> <?= htmlspecialchars($article['publishedAt']) ?></p>
-                                <p><strong>Description :</strong> <?= htmlspecialchars($article['description']) ?></p>
-                                <?php if (!empty($article['urlToImage'])): ?>
-                                    <img src="<?= htmlspecialchars($article['urlToImage']) ?>" alt="<?= htmlspecialchars($article['title']) ?>" style="max-width: 100%; height: auto; margin-bottom: 10px;">
-                                <?php endif; ?>
-                                <!-- Lien cliquable simple -->
-                                <a href="<?= htmlspecialchars($article['url']) ?>" target="_blank">
-                                    Lire l'article complet
-                                </a>
+                <div class="container">
+                    <h1 class="mb-4">Liste des Services</h1>
 
-                                <div class="action-buttons" style="margin-top: 10px;">
-                                    <a href="/administrator/articles/edit/<?= $article['id'] ?>" class="btn btn-secondary btn-sm">Modifier</a>
-                                    <a href="/administrator/articles/delete/<?= $article['id'] ?>" onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')" class="btn btn-danger btn-sm">Supprimer</a>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php else: ?>
-                    <p>Aucun article trouvé.</p>
-                <?php endif; ?>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom du Service</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php if (isset($services) && !empty($services)): ?>
+                            <?php foreach ($services as $service): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($service['id']) ?></td>
+                                    <td><?= htmlspecialchars($service['nom_service']) ?></td>
+                                    <td><?= htmlspecialchars($service['description']) ?></td>
+                                    <td>
+                                        <a href="/administrator/services/edit/<?= $service['id'] ?>" class="btn btn-secondary btn-sm">Modifier</a>
+                                        <a href="/administrator/services/delete/<?= $service['id'] ?>"
+                                           class="btn btn-danger btn-sm"
+                                           onclick="return confirm('Voulez-vous vraiment supprimer ce service ?')">
+                                            Supprimer
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="4" class="text-center">Aucun service trouvé.</td>
+                            </tr>
+                        <?php endif; ?>
+                        </tbody>
+                    </table>
+
+                    <a href="/administrator/services/create" class="btn btn-primary">Ajouter un Service</a>
+                </div>
+
 
             </div>
             <!-- Fin de la section principale -->

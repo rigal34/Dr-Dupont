@@ -8,11 +8,20 @@ class User
 {
     private PDO $pdo;
 
-    public function __construct(PDO $pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = self::getPDO(); // Charge la connexion PDO
     }
-
+    private static function getPDO(): PDO
+    {
+        try {
+            $pdo = new PDO('mysql:host=localhost;dbname=gestion_rendez_vous', 'root', '');
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
+        } catch (\PDOException $e) {
+            die('Erreur de connexion à la base de données : ' . $e->getMessage());
+        }
+    }
     public function getAll(): array
     {
         $stmt = $this->pdo->query('SELECT * FROM users ORDER BY id DESC');

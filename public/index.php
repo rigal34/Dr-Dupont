@@ -14,6 +14,7 @@ use App\Controllers\NewsController;
 use App\Controllers\InscriptionController;
 use App\Controllers\AdminController;
 use App\Controllers\UserController;
+use App\Controllers\AdminServiceController;
 
 
 $uri = $_SERVER['REQUEST_URI'] ?? '/';
@@ -103,6 +104,34 @@ switch ($uriSegments[0]) {
                     $userController->index(); // Liste tous les utilisateurs
                     break;
             }
+        } elseif ($subRoute === 'services') {
+            // Ajout de la gestion des services côté administrateur
+            $adminServiceController = new AdminServiceController();
+            $action = $uriSegments[2] ?? null;
+            switch ($action) {
+                case 'create':
+                    $adminServiceController->create();  // Page pour créer un service
+                    break;
+                case 'store':
+                    $adminServiceController->store();  // Enregistre un service
+                    break;
+                case 'edit':
+                    $adminServiceController->edit($uriSegments[3] ?? null);  // Modifier un service
+                    break;
+                case 'update':
+                    $adminServiceController->update($uriSegments[3] ?? null);  // Met à jour un service
+                    break;
+                case 'delete':
+                    $adminServiceController->delete($uriSegments[3] ?? null);  // Supprime un service
+                    break;
+                default:
+                    $adminServiceController->index();  // Liste tous les services
+                    break;
+            }
+
+
+
+
 
         } else {
             $adminController->index(); // Route pour `administrator` uniquement si pas de sous-route `articles`
@@ -141,6 +170,8 @@ switch ($uriSegments[0]) {
         $controller = new RendezVousController();
         $controller->add();
         break;
+
+
 
     case 'services':  // Nouvelle route pour la page des services
         $controller = new ServiceController();

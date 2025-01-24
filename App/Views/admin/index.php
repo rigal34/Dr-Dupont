@@ -56,6 +56,13 @@
         <li class="nav-item">
             <hr class="sidebar-divider">
         </li>
+        <!-- Gestion des services -->
+        <li class="nav-item <?= isActive('/administrator/services') ?>">
+            <a class="nav-link" href="/administrator/services">
+                <i class="fas fa-tooth"></i>
+                <span>Gestion des services</span>
+            </a>
+        </li>
 
         <!-- Gestion des articles -->
         <li class="nav-item <?= isActive('/administrator/articles') ?>">

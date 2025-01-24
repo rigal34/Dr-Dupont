@@ -11,10 +11,9 @@ class UserController
 
     public function __construct()
     {
-
-        global $pdo;
-        $this->userModel = new User($pdo);
+        $this->userModel = new User(); // Supprime la dépendance à $pdo ici
     }
+
 
     public function index(): void
     {

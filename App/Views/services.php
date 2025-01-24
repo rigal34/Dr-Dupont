@@ -27,11 +27,12 @@
         <div class="service-section">
             <h2><?= htmlspecialchars($service['nom_service']) ?></h2>
             <p><?= htmlspecialchars($service['description']) ?></p>
-
+<!--
             <div class="action-buttons">
                 <a href="/services/edit/<?= $service['id'] ?>" class="btn btn-secondary">Modifier</a>
                 <a href="/services/delete/<?= $service['id'] ?>" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ce service ?')">Supprimer</a>
             </div>
+         !-->
         </div>
     <?php endforeach; ?>
 <?php else: ?>
@@ -45,18 +46,19 @@
 
 
 <!-- Bouton pour créer un nouveau service -->
+<!--
 <div style="text-align: center; margin: 20px;">
     <a href="/services/create" class="btn btn-primary">Créer un nouveau service</a>
 </div>
-
-<!-- Menu déroulant -->
+!-->
+<!--
 <label for="service-select">Choisir une catégorie de services :</label>
 <select id="service-select" onchange="showSection(this.value)">
     <option value="soins-dentaires">Soins dentaires courants</option>
     <option value="orthodontie">Orthodontie</option>
     <option value="implantation">Implantation</option>
 </select>
-
+!-->
 <!-- Section Soins dentaires courants -->
 <div id="soins-dentaires" class="service-section" style="display: block;">
     <h2>Soins Dentaires Courants</h2>
@@ -66,12 +68,14 @@
         <li>Plombages et réparations des caries.</li>
         <li>Traitement des gencives pour prévenir les infections parodontales.</li>
     </ul>
+    <!--
     <div class="action-buttons">
         <a href="/services/edit/1" class="btn btn-secondary">Modifier</a>
         <a href="/services/delete/1" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ce service ?')">Supprimer</a>
     </div>
-</div>
 
+</div>
+-->
 <!-- Section Orthodontie -->
 <div id="orthodontie" class="service-section" style="display: none;">
     <h2>Orthodontie</h2>
@@ -81,12 +85,13 @@
         <li>Alignement transparent pour un traitement discret.</li>
         <li>Solutions orthodontiques pour enfants et adultes.</li>
     </ul>
+    <!--
     <div class="action-buttons">
         <a href="/services/edit/2" class="btn btn-secondary">Modifier</a>
         <a href="/services/delete/2" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ce service ?')">Supprimer</a>
     </div>
 </div>
-
+!-->
 <!-- Section Implantation -->
 <div id="implantation" class="service-section" style="display: none;">
     <h2>Implants Dentaires</h2>
@@ -96,10 +101,12 @@
         <li>Couronnes et bridges sur implants pour un sourire naturel.</li>
         <li>Suivi post-opératoire personnalisé pour un rétablissement rapide.</li>
     </ul>
+    <!--
     <div class="action-buttons">
         <a href="/services/edit/3" class="btn btn-secondary">Modifier</a>
         <a href="/services/delete/3" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ce service ?')">Supprimer</a>
     </div>
+    !-->
 </div>
 
 <a href="/" class="back-to-home">Retour à l'accueil</a>
